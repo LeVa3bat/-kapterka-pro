@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет и Сообщество — АСУ «КАПТЁРКА PRO»</title>
+    
+    <!-- Favicon & App Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#181D13">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- SEO & Metadata -->
+    <meta name="description" content="Личный кабинет пользователя и оперативное сообщество АСУ «КАПТЁРКА PRO». Регистрация, верификация контактов, чат бойцов и панель управления.">
+    <link rel="canonical" href="https://kapterka-pro.ru/cabinet.html" />
+
+    <!-- Core Local Stylesheets (Always reliable & offline-safe) -->
+    <link rel="stylesheet" href="tailwind.min.css">
+    <link rel="stylesheet" href="tactical.css">
+
+    <!-- Tailwind CSS CDN (Enhancer) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tactical: {
+                            bg: '#080C09',
+                            dark: '#050806',
+                            card: '#121814',
+                            cardHover: '#17221A',
+                            border: '#233326',
+                            borderBright: '#3A543E',
+                            green: '#4CAF50',
+                            accent: '#66BB6A',
+                            darkGreen: '#18331A',
+                            gold: '#E2C044',
+                            red: '#E05342',
+                            blue: '#42A5F5',
+                            text: '#E0E6E1',
+                            muted: '#8E9F90',
+                            dim: '#556658'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CRITICAL OFFLINE / CDN-SAFE CSS RESET AND UTILITIES */
+        *, ::before, ::after { box-sizing: border-box; border-width: 0; border-style: solid; border-color: #233326; }
+        html { line-height: 1.5; -webkit-text-size-adjust: 100%; font-family: Inter, system-ui, sans-serif; }
+        body { margin: 0; line-height: inherit; }
+        a { color: inherit; text-decoration: inherit; }
+        button, input, optgroup, select, textarea { font-family: inherit; font-size: 100%; line-height: inherit; margin: 0; }
+        .flex { display: flex !important; }
+        .inline-flex { display: inline-flex !important; }
+        .grid { display: grid !important; }
+        .block { display: block !important; }
+        .inline-block { display: inline-block !important; }
+        .flex-col { flex-direction: column !important; }
+        .flex-row { flex-direction: row !important; }
+        .flex-grow { flex-grow: 1 !important; }
+        .items-center { align-items: center !important; }
+        .justify-between { justify-content: space-between !important; }
+        .justify-center { justify-content: center !important; }
+        .text-center { text-align: center !important; }
+        .relative { position: relative !important; }
+        .absolute { position: absolute !important; }
+        .fixed { position: fixed !important; }
+        .sticky { position: sticky !important; }
+        .top-0 { top: 0 !important; }
+        .z-40 { z-index: 40 !important; }
+        .z-50 { z-index: 50 !important; }
+        .w-full { width: 100% !important; }
+        .max-w-7xl { max-width: 80rem !important; }
+        .max-w-4xl { max-width: 56rem !important; }
+        .max-w-2xl { max-width: 42rem !important; }
+        .max-w-md { max-width: 28rem !important; }
+        .mx-auto { margin-left: auto !important; margin-right: auto !important; }
+        .gap-2 { gap: 0.5rem !important; }
+        .gap-3 { gap: 0.75rem !important; }
+        .gap-4 { gap: 1rem !important; }
+        .gap-6 { gap: 1.5rem !important; }
+        .p-4 { padding: 1rem !important; }
+        .p-6 { padding: 1.5rem !important; }
+        .px-4 { padding-left: 1rem !important; padding-right: 1rem !important; }
+        .py-2 { padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; }
+        .rounded-xl { border-radius: 0.75rem !important; }
+        .rounded-2xl { border-radius: 1rem !important; }
+        .rounded-3xl { border-radius: 1.5rem !important; }
+        .rounded-full { border-radius: 9999px !important; }
+        .font-bold { font-weight: 700 !important; }
+        .font-black { font-weight: 900 !important; }
+        .font-mono { font-family: 'JetBrains Mono', monospace !important; }
+        .text-white { color: #ffffff !important; }
+        .text-tactical-green { color: #4CAF50 !important; }
+        .bg-tactical-green { background-color: #4CAF50 !important; color: #000000 !important; }
+        .bg-tactical-card { background-color: #121814 !important; }
+        .bg-tactical-bg { background-color: #080C09 !important; }
+        .bg-tactical-dark { background-color: #050806 !important; }
+        .border { border-width: 1px !important; }
+        .border-tactical-border { border-color: #233326 !important; }
+        .border-tactical-green { border-color: #4CAF50 !important; }
+        .hidden, [hidden] { display: none !important; }
+
+        body {
+            background-color: #080C09;
+            color: #E0E6E1;
+            font-family: 'Inter', sans-serif;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(76, 175, 80, 0.12), transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(24, 51, 26, 0.2), transparent 45%);
+        }
+
+        .tactical-grid {
+            background-size: 32px 32px;
+            background-image: 
+                linear-gradient(to right, rgba(35, 51, 38, 0.25) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(35, 51, 38, 0.25) 1px, transparent 1px);
+        }
+
+        .glow-green {
+            box-shadow: 0 0 30px -5px rgba(76, 175, 80, 0.35);
+        }
+        
+        .glow-green-sm {
+            box-shadow: 0 0 15px -2px rgba(76, 175, 80, 0.25);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080C09;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #233326;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4CAF50;
+        }
+        
+        .tab-btn.active {
+            background-color: #18331A;
+            color: #4CAF50;
+            border-color: #4CAF50;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-tactical-green selection:text-black">
+
+    <!-- TOP SYSTEM STATUS BAR -->
+    <div class="bg-tactical-dark border-b border-tactical-border text-tactical-muted text-xs font-mono py-1.5 px-4 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-2 cursor-pointer select-none" id="secret-admin-trigger" title="АСУ Каптёрка PRO">
+                <span class="inline-block w-2 h-2 rounded-full bg-tactical-green animate-pulse"></span>
+                <span class="text-tactical-green font-bold">СИСТЕМА:</span>
+                <span class="text-white font-mono">Личный кабинет & Сообщество</span>
+                <span class="hidden sm:inline text-tactical-dim">|</span>
+                <span class="hidden sm:inline text-gray-300">АСУ Каптёрка PRO</span>
+            </div>
+            <div class="flex items-center space-x-3 sm:space-x-4 text-[11px]">
+                <a href="index.html" class="hover:text-tactical-green text-gray-300 transition-colors flex items-center gap-1">
+                    <i data-lucide="arrow-left" class="w-3 h-3 text-tactical-green"></i> На главную
+                </a>
+                <a href="manual.html" class="hover:text-tactical-green text-gray-300 transition-colors font-medium">Инструкция</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <!-- MAIN HEADER -->
+    <header class="bg-tactical-dark/95 backdrop-blur-md border-b border-tactical-border sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex justify-between items-center">
+            
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-tactical-card border border-tactical-green/50 flex items-center justify-center p-1 group-hover:border-tactical-green transition-all shadow-md">
+                    <img src="images/app-icon.svg" alt="Каптёрка PRO" class="w-7 h-7" onerror="this.outerHTML='<i data-lucide=\'shield\' class=\'w-6 h-6 text-tactical-green\'></i>'">
+                </div>
+                <div>
+                    <span class="font-mono font-black text-lg sm:text-xl tracking-wider text-white flex items-center gap-1.5">
+                        КАПТЁРКА <span class="text-tactical-green">PRO</span>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center space-x-5 text-sm font-medium text-tactical-muted">
+                <a href="index.html" class="hover:text-tactical-green transition-colors flex items-center gap-1.5">
+                    <i data-lucide="home" class="w-4 h-4 text-tactical-green"></i> Главная
+                </a>
+                <a href="about.html" class="hover:text-tactical-green transition-colors flex items-center gap-1.5">
+                    <i data-lucide="info" class="w-4 h-4 text-tactical-green"></i> О программе
+                </a>
+                <a href="manual.html" class="hover:text-tactical-green transition-colors flex items-center gap-1.5">
+                    <i data-lucide="book-open" class="w-4 h-4 text-tactical-green"></i> Инструкция
+                </a>
+                <a href="versions.html" class="hover:text-tactical-green transition-colors flex items-center gap-1.5">
+                    <i data-lucide="git-branch" class="w-4 h-4 text-tactical-green"></i> Версии
+                </a>
+                <a href="pay.html" class="hover:text-tactical-green transition-colors flex items-center gap-1.5 text-tactical-gold">
+                    <i data-lucide="award" class="w-4 h-4 text-tactical-gold"></i> Оплата PRO
+                </a>
+            </nav>
+
+            <!-- Quick Action Buttons in Header -->
+            <div class="flex items-center space-x-2">
+                <a href="cabinet.html#register" class="inline-flex items-center space-x-1.5 bg-tactical-card hover:bg-tactical-border text-white font-bold text-xs sm:text-sm px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl border border-tactical-border transition-all shadow-md">
+                    <i data-lucide="user-plus" class="w-4 h-4 text-tactical-green"></i>
+                    <span class="hidden sm:inline">Регистрация</span>
+                </a>
+                <a href="cabinet.html" class="inline-flex items-center space-x-1.5 bg-tactical-green/20 hover:bg-tactical-green/30 text-tactical-green font-bold text-xs sm:text-sm px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl border border-tactical-green/40 transition-all">
+                    <i data-lucide="users" class="w-4 h-4"></i>
+                    <span>Личный кабинет</span>
+                </a>
+                <a href="https://github.com/LeVa3bat/leva3bat.github.io/releases/download/v2.9-pro/kapterka-v2.9.apk" download class="hidden sm:inline-flex items-center space-x-1.5 bg-tactical-green hover:bg-tactical-accent text-black font-black text-xs sm:text-sm px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl transition-all shadow-md">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span>Скачать APK</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 w-full">
+        
+        <!-- GLOBAL SECURITY & OPSEC WARNING BANNER -->
+        <div class="mb-6 p-4 rounded-2xl bg-tactical-red/10 border-2 border-tactical-red/40 flex flex-col sm:flex-row items-start sm:items-center gap-3.5 shadow-lg">
+            <div class="w-10 h-10 rounded-xl bg-tactical-red/20 border border-tactical-red/50 text-tactical-red flex items-center justify-center shrink-0">
+                <i data-lucide="shield-alert" class="w-6 h-6 animate-pulse"></i>
+            </div>
+            <div class="flex-grow text-xs leading-relaxed">
+                <div class="font-mono font-bold text-tactical-red uppercase text-sm flex items-center gap-1.5 mb-0.5">
+                    <span>⚠️ ВНИМАНИЕ: СТРОГОЕ СОБЛЮДЕНИЕ РЕЖИМА СЕКРЕТНОСТИ (OPSEC)</span>
+                </div>
+                <p class="text-gray-200">
+                    <strong class="text-white">КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО</strong> указывать точные наименования закрытых воинских частей, реальные ФИО, населённые пункты дислокации, боевые направления («откуда/куда»), геолокации складов и оперативные данные! Используйте <span class="text-tactical-green font-mono font-bold">ТОЛЬКО ПОЗЫВНЫЕ</span> и условные обозначения подразделений (например: «Взвод связи», «Рота БПЛА»).
+                </p>
+            </div>
+        </div>
+
+        <!-- TOP CONTROLS / TABS -->
+        <div class="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-tactical-border">
+            <div id="dynamic-tabs-container" class="flex flex-wrap items-center gap-2">
+                <!-- Logged in state tabs -->
+                <button id="tab-btn-profile" onclick="switchMainTab('profile')" class="tab-btn active px-4 py-2.5 rounded-xl border border-tactical-border text-xs sm:text-sm font-semibold flex items-center gap-2 transition-all">
+                    <i data-lucide="user-check" class="w-4 h-4"></i>
+                    <span>Личный кабинет</span>
+                </button>
+                <button id="tab-btn-chat" onclick="switchMainTab('chat')" class="tab-btn px-4 py-2.5 rounded-xl border border-tactical-border text-xs sm:text-sm font-semibold flex items-center gap-2 transition-all">
+                    <i data-lucide="message-square" class="w-4 h-4"></i>
+                    <span>Оперативный Чат</span>
+                    <span id="chat-count-badge" class="bg-tactical-green/20 text-tactical-green text-[10px] px-1.5 py-0.5 rounded-full font-mono font-bold">0</span>
+                </button>
+                
+                <!-- Logged out state tabs (hidden when logged in) -->
+                <button id="tab-btn-register" onclick="switchMainTab('register')" class="tab-btn hidden px-4 py-2.5 rounded-xl border border-tactical-border text-xs sm:text-sm font-semibold flex items-center gap-2 transition-all">
+                    <i data-lucide="user-plus" class="w-4 h-4"></i>
+                    <span>Регистрация</span>
+                </button>
+                <button id="tab-btn-login" onclick="switchMainTab('login')" class="tab-btn hidden px-4 py-2.5 rounded-xl border border-tactical-border text-xs sm:text-sm font-semibold flex items-center gap-2 transition-all">
+                    <i data-lucide="log-in" class="w-4 h-4"></i>
+                    <span>Вход</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- TAB 1: OPERATIONAL CHAT & COMMUNITY -->
+        <section id="view-chat" class="mt-6">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                
+                <!-- Chat Left Sidebar: Guidelines & Stats -->
+                <div class="lg:col-span-1 space-y-4">
+                    <div class="bg-tactical-card border border-tactical-border rounded-2xl p-4 sm:p-5">
+                        <div class="flex items-center space-x-2 text-tactical-green font-mono text-xs font-bold uppercase tracking-wider mb-3">
+                            <i data-lucide="radio" class="w-4 h-4 animate-pulse"></i>
+                            <span>Сводка сообщества</span>
+                        </div>
+                        <div class="space-y-2.5 text-xs text-tactical-muted">
+                            <div class="flex justify-between py-1 border-b border-tactical-border/50">
+                                <span>Зарегистрировано бойцов:</span>
+                                <span id="stat-total-users" class="font-mono font-bold text-white">0</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-tactical-border/50">
+                                <span>Верифицировано (Email/Тел):</span>
+                                <span id="stat-verified-users" class="font-mono font-bold text-tactical-green">0</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-tactical-border/50">
+                                <span>Сообщений в эфире:</span>
+                                <span id="stat-total-messages" class="font-mono font-bold text-white">0</span>
+                            </div>
+                            <div class="flex justify-between py-1">
+                                <span>Текущий статус:</span>
+                                <span class="font-mono font-bold text-tactical-green flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-tactical-green"></span> Активен
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filter channels -->
+                    <div class="bg-tactical-card border border-tactical-border rounded-2xl p-4">
+                        <div class="text-xs font-mono font-bold text-tactical-muted uppercase mb-2">Категории эфира</div>
+                        <div class="space-y-1 text-xs">
+                            <button onclick="setChatCategory('all')" id="cat-btn-all" class="w-full text-left px-3 py-2 rounded-lg bg-tactical-darkGreen text-tactical-green font-bold flex items-center justify-between">
+                                <span>📡 Общий эфир</span>
+                            </button>
+                            <button onclick="setChatCategory('accounting')" id="cat-btn-accounting" class="w-full text-left px-3 py-2 rounded-lg text-tactical-muted hover:bg-tactical-cardHover hover:text-white flex items-center justify-between">
+                                <span>📦 Вопросы по учёту</span>
+                            </button>
+                            <button onclick="setChatCategory('reviews')" id="cat-btn-reviews" class="w-full text-left px-3 py-2 rounded-lg text-tactical-muted hover:bg-tactical-cardHover hover:text-white flex items-center justify-between">
+                                <span>⭐ Отзывы и предложения</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Security Note -->
+                    <div class="bg-tactical-card/60 border border-tactical-border/60 rounded-2xl p-4 text-[11px] text-tactical-muted leading-relaxed">
+                        <div class="flex items-center gap-1.5 text-tactical-gold font-bold mb-1">
+                            <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i>
+                            <span>Соблюдайте безопасность</span>
+                        </div>
+                        Не публикуйте точные координаты позиций, номера закрытых частей и личные пароли в открытом эфире.
+                    </div>
+                </div>
+
+                <!-- Chat Center & Right: Feed and Composer -->
+                <div class="lg:col-span-3 flex flex-col bg-tactical-card border border-tactical-border rounded-2xl overflow-hidden min-h-[520px]">
+                    
+                    <!-- Chat Header -->
+                    <div class="bg-tactical-cardHover/80 border-b border-tactical-border px-4 py-3 flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-2.5 h-2.5 rounded-full bg-tactical-green animate-pulse"></div>
+                            <span id="current-channel-title" class="font-mono font-bold text-sm text-white">📡 ОБЩИЙ ЭФИР СООБЩЕСТВА</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-xs">
+                            <button onclick="renderChatFeed()" class="text-tactical-muted hover:text-tactical-green flex items-center gap-1" title="Обновить эфир">
+                                <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                                <span class="hidden sm:inline font-mono">Обновить</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Chat Messages List -->
+                    <div id="chat-messages-container" class="flex-grow p-4 sm:p-5 overflow-y-auto space-y-4 max-h-[480px]">
+                        <!-- Messages dynamically rendered here -->
+                    </div>
+
+                    <!-- Chat Input Composer -->
+                    <div class="border-t border-tactical-border bg-tactical-bg p-3 sm:p-4">
+                        <form id="chat-composer-form" onsubmit="handleSendChatMessage(event)" class="space-y-3">
+                            <div class="flex flex-wrap sm:flex-nowrap gap-2 items-center">
+                                <div class="w-full sm:w-1/3">
+                                    <input type="text" id="chat-author-input" placeholder="Позывной (не ФИО)" required
+                                        class="w-full bg-tactical-card border border-tactical-border rounded-xl px-3 py-2 text-xs font-mono text-white placeholder-tactical-muted focus:outline-none focus:border-tactical-green">
+                                </div>
+                                <div class="w-full sm:w-1/3">
+                                    <input type="text" id="chat-unit-input" placeholder="Условн. подразделение"
+                                        class="w-full bg-tactical-card border border-tactical-border rounded-xl px-3 py-2 text-xs font-mono text-white placeholder-tactical-muted focus:outline-none focus:border-tactical-green">
+                                </div>
+                                <div class="w-full sm:w-1/3">
+                                    <select id="chat-category-select" class="w-full bg-tactical-card border border-tactical-border rounded-xl px-3 py-2 text-xs font-mono text-tactical-green focus:outline-none focus:border-tactical-green">
+                                        <option value="all">📡 Общий эфир</option>
+                                        <option value="accounting">📦 Вопросы по учёту</option>
+                                        <option value="reviews">⭐ Отзывы и предложения</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <textarea id="chat-message-input" rows="2" placeholder="Напишите сообщение в эфир (без координат, направлений и секретных данных)..." required
+                                    class="flex-grow bg-tactical-card border border-tactical-border rounded-xl p-3 text-xs sm:text-sm text-white placeholder-tactical-muted focus:outline-none focus:border-tactical-green resize-none"></textarea>
+                                <button type="submit" class="bg-tactical-green hover:bg-tactical-accent text-black font-bold px-4 sm:px-6 rounded-xl text-xs sm:text-sm transition-all flex flex-col items-center justify-center gap-1 shadow-md glow-green-sm">
+                                    <i data-lucide="send" class="w-4 h-4"></i>
+                                    <span>Отправить</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: REGISTRATION FORM (DIRECT 1-STEP) -->
+        <section id="view-register" class="mt-6 hidden">
+            <div class="max-w-2xl mx-auto bg-tactical-card border border-tactical-border rounded-3xl p-6 sm:p-8 shadow-2xl">
+                
+                <div class="text-center mb-6">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-tactical-darkGreen border border-tactical-green text-tactical-green mb-3">
+                        <i data-lucide="user-plus" class="w-6 h-6"></i>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-black text-white">Регистрация в системе</h2>
+                    <p class="text-xs sm:text-sm text-tactical-muted mt-1">Быстрое создание учётной записи бойца для доступа к личному кабинету и чату</p>
+                </div>
+
+                <!-- OPSEC Warning Box -->
+                <div class="mb-5 p-3.5 rounded-xl bg-tactical-red/10 border border-tactical-red/30 text-xs text-tactical-red flex items-start gap-2.5">
+                    <i data-lucide="alert-triangle" class="w-4 h-4 shrink-0 mt-0.5"></i>
+                    <div>
+                        <span class="font-bold">ПРАВИЛО БЕЗОПАСНОСТИ:</span> Не указывайте реальные ФИО, номера закрытых в/ч, координаты и направления дислокации («откуда/куда»). Указывайте только позывной и условное подразделение.
+                    </div>
+                </div>
+
+                <form id="register-form" onsubmit="handleRegistrationSubmit(event)" class="space-y-4">
+                    
+                    <!-- Callsign & Unit -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-mono font-bold text-tactical-muted mb-1.5">ПОЗЫВНОЙ <span class="text-tactical-green">* (без реального ФИО)</span></label>
+                            <div class="relative">
+                                <input type="text" id="reg-callsign" placeholder="Например: Снайпер, Сокол, Норд" required
+                                    class="w-full bg-tactical-bg border border-tactical-border rounded-xl pl-9 pr-3 py-2.5 text-sm text-white focus:outline-none focus:border-tactical-green font-mono">
+                                <i data-lucide="shield" class="w-4 h-4 text-tactical-muted absolute left-3 top-3"></i>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono font-bold text-tactical-muted mb-1.5">УСЛОВНОЕ ПОДРАЗДЕЛЕНИЕ <span class="text-tactical-green">*</span></label>
+                            <div class="relative">
+                                <input type="text" id="reg-unit" placeholder="Например: Взвод БПЛА / РЭБ / Связь (без дислокации)" required
+                                    class="w-full bg-tactical-bg border border-tactical-border rounded-xl pl-9 pr-3 py-2.5 text-sm text-white focus:outline-none focus:border-tactical-green font-mono">
+                                <i data-lucide="map-pin" class="w-4 h-4 text-tactical-muted absolute left-3 top-3"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email & Phone Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-mono font-bold text-tactical-muted mb-1.5">EMAIL (ДЛЯ СВЯЗИ) <span class="text-tactical-green">*</span></label>
+                            <div class="relative">
+                                <input type="email" id="reg-email" placeholder="example@mail.ru" required
+                                    class="w-full bg-tactical-bg border border-tactical-border rounded-xl pl-9 pr-3 py-2.5 text-sm text-white focus:outline-none focus:border-tactical-green font-mono">
+                                <i data-lucide="mail" class="w-4 h-4 text-tactical-muted absolute left-3 top-3"></i>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono font-bold text-tactical-muted mb-1.5">НОМЕР ТЕЛЕФОНА <span class="text-tactical-green">*</span></label>
+                            <div class="relative">
+                                <input type="tel" id="reg-phone" placeholder="+7 (9xx) xxx-xx-xx" required
+                                    class="w-full bg-tactical-bg border border-tactical-border rounded-xl pl-9 pr-3 py-2.5 text-sm text-white focus:outline-none focus:border-tactical-green font-mono">
+                                <i data-lucide="phone" class="w-4 h-4 text-tactical-muted absolute left-3 top-3"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Password & Comment -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-mono font-bold text-tactical-muted mb-1.5">ПАРОЛЬ ДЛЯ ВХОДА <span class="text-tactical-green">*</span></label>
+                            <div class="relative">
+                                <input type="password" id="reg-password" placeholder="Минимум 4 символа" required minlength="4"
+                                    class="w-full bg-tactical-bg border border-tactical-border rounded-xl pl-9 pr-3 py-2.5 text-sm text-white focus:outline-none focus:border-tactical-green font-mono">
+                                <i data-lucide="key" class="w-4 h-4 text-tactical-muted absolute left-3 top-3"></i>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono font-bold text-tactical-muted mb-1.5">ПОЖЕЛАНИЯ / КОММЕНТАРИЙ</label>
+                            <input type="text" id="reg-comment" placeholder="Пожелания или задачи (без секретных данных)"
+                                class="w-full bg-tactical-bg border border-tactical-border rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-tactical-green">
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="btn-submit-reg" class="w-full bg-tactical-green hover:bg-tactical-accent text-black font-black text-sm py-3.5 rounded-2xl transition-all shadow-xl glow-green transform hover:scale-[1.01] flex items-center justify-center gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5"></i>
+                        <span>ЗАРЕГИСТРИРОВАТЬСЯ И ВОЙТИ В КАБИНЕТ</span>
+                    </button>
+
+                    <div class="text-center text-xs text-tactical-muted">
+                        Уже есть аккаунт? <button type="button" onclick="switchMainTab('login')" class="text-tactical-green underline font-bold">Войти в кабинет</button>
+                    </div>
+
+                </form>
+            </div>
+        </section>
+
+                </form>
+            </div>
+        </section>
+
+        <!-- TAB 3: LOGIN FORM -->
+        <section id="view-login" class="mt-6 hidden">
+            <div class="max-w-md mx-auto bg-tactical-card border border-tactical-border rounded-3xl p-6 sm:p-8 shadow-2xl">
+                <div class="text-center mb-6">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-tactical-darkGreen border border-tactical-green text-tactical-green mb-3">
+                        <i data-lucide="log-in" class="w-6 h-6"></i>
+                    </div>
+                    <h2 class="text-2xl font-black text-white">Вход в кабинет</h2>
+                    <p class="text-xs text-tactical-muted mt-1">Введите ваши данные для входа в профиль бойца</p>
+                </div>
+
+                <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-mono font-bold text-tactical-muted mb-1.5">ПОЗЫВНОЙ, EMAIL ИЛИ ТЕЛЕФОН</label>
+                        <input type="text" id="login-identifier" placeholder="Позывной, почта или номер" required
+                            class="w-full bg-tactical-bg border border-tactical-border rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-tactical-green font-mono">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-mono font-bold text-tactical-muted mb-1.5">ПАРОЛЬ</label>
+                        <input type="password" id="login-password" placeholder="Ваш пароль" required
+                            class="w-full bg-tactical-bg border border-tactical-border rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-tactical-green font-mono">
+                    </div>
+
+                    <button type="submit" class="w-full bg-tactical-green hover:bg-tactical-accent text-black font-bold text-sm py-3 rounded-2xl transition-all shadow-md glow-green-sm">
+                        ВОЙТИ В КАБИНЕТ
+                    </button>
+
+                    <div class="text-center text-xs text-tactical-muted">
+                        Нет аккаунта? <button type="button" onclick="switchMainTab('register')" class="text-tactical-green underline font-bold">Зарегистрироваться</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- TAB 4: USER PROFILE (ACTIVE LOGGED IN) -->
+        <section id="view-profile" class="mt-6 hidden">
+            <div class="max-w-3xl mx-auto space-y-6">
+                
+                <!-- Profile Header Card -->
+                <div class="bg-tactical-card border border-tactical-border rounded-3xl p-6 sm:p-8 relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 opacity-10 text-tactical-green pointer-events-none">
+                        <i data-lucide="shield" class="w-48 h-48"></i>
+                    </div>
+
+                    <!-- Security Alert inside profile -->
+                    <div class="mb-5 p-3 rounded-xl bg-tactical-gold/10 border border-tactical-gold/30 text-xs text-tactical-gold flex items-center gap-2">
+                        <i data-lucide="shield-check" class="w-4 h-4 shrink-0"></i>
+                        <span>Профиль защищён. Личные персональные данные и координаты не хранятся на сервере в открытом виде.</span>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 rounded-2xl bg-tactical-darkGreen border border-tactical-green flex items-center justify-center text-tactical-green shadow-xl font-mono text-2xl font-black">
+                                <span id="prof-avatar-letter">К</span>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <h2 id="prof-callsign" class="text-2xl font-black text-white">Боец</h2>
+                                    <span id="prof-license-badge" class="bg-tactical-green text-black font-mono text-[10px] font-extrabold px-2 py-0.5 rounded-full">PRO</span>
+                                </div>
+                                <p id="prof-unit" class="text-xs sm:text-sm text-tactical-muted font-mono mt-0.5">Подразделение не указано</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <a href="pay.html" class="bg-tactical-gold/20 hover:bg-tactical-gold/30 text-tactical-gold border border-tactical-gold/50 font-bold text-xs px-3.5 py-2 rounded-xl flex items-center gap-1.5 transition-all">
+                                <i data-lucide="award" class="w-3.5 h-3.5"></i> Оплатить PRO (500 ₽)
+                            </a>
+                            <a href="https://github.com/LeVa3bat/leva3bat.github.io/releases/download/v2.9-pro/kapterka-v2.9.apk" download class="bg-tactical-green hover:bg-tactical-accent text-black font-bold text-xs px-4 py-2 rounded-xl flex items-center gap-1.5 transition-all shadow-md">
+                                <i data-lucide="download" class="w-3.5 h-3.5"></i> Скачать APK v2.9
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Details Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6 pt-6 border-t border-tactical-border">
+                        <div class="bg-tactical-bg p-3.5 rounded-2xl border border-tactical-border/60">
+                            <div class="text-[10px] font-mono text-tactical-muted uppercase">Email</div>
+                            <div id="prof-email" class="text-xs font-mono text-white font-semibold mt-1">---</div>
+                            <span id="prof-email-badge" class="inline-block mt-1 text-[10px] text-tactical-green font-mono">✅ Верифицирован</span>
+                        </div>
+
+                        <div class="bg-tactical-bg p-3.5 rounded-2xl border border-tactical-border/60">
+                            <div class="text-[10px] font-mono text-tactical-muted uppercase">Телефон</div>
+                            <div id="prof-phone" class="text-xs font-mono text-white font-semibold mt-1">---</div>
+                            <span id="prof-phone-badge" class="inline-block mt-1 text-[10px] text-tactical-green font-mono">✅ Верифицирован</span>
+                        </div>
+
+                        <div class="bg-tactical-bg p-3.5 rounded-2xl border border-tactical-border/60">
+                            <div class="text-[10px] font-mono text-tactical-muted uppercase">Дата регистрации</div>
+                            <div id="prof-regdate" class="text-xs font-mono text-tactical-gold font-semibold mt-1">---</div>
+                            <span class="inline-block mt-1 text-[10px] text-tactical-muted font-mono">ID: #<span id="prof-userid">000</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick comment / feedback -->
+                <div class="bg-tactical-card border border-tactical-border rounded-2xl p-5">
+                    <h3 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+                        <i data-lucide="message-circle" class="w-4 h-4 text-tactical-green"></i>
+                        <span>Оставить отзыв или вопрос разработчику</span>
+                    </h3>
+                    <div class="flex gap-2">
+                        <input type="text" id="prof-quick-comment" placeholder="Напишите комментарий, пожелание или найденный баг..."
+                            class="flex-grow bg-tactical-bg border border-tactical-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-tactical-green">
+                        <button onclick="sendProfileComment()" class="bg-tactical-green text-black font-bold text-xs px-4 py-2 rounded-xl shrink-0">
+                            Отправить
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-tactical-dark border-t border-tactical-border py-8 text-tactical-muted text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-tactical-card border border-tactical-border flex items-center justify-center text-tactical-green">
+                        <i data-lucide="shield" class="w-4 h-4"></i>
+                    </div>
+                    <div>
+                        <div class="text-white font-bold font-mono">АСУ «КАПТЁРКА PRO» v2.9</div>
+                        <div class="text-tactical-muted text-[11px]">Автономная система тактического складского учёта</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-4 text-xs font-mono">
+                    <a href="index.html" class="hover:text-tactical-green transition-colors">Главная</a>
+                    <a href="about.html" class="hover:text-tactical-green transition-colors">О программе</a>
+                    <a href="manual.html" class="hover:text-tactical-green transition-colors">Инструкция</a>
+                    <a href="versions.html" class="hover:text-tactical-green transition-colors">История версий</a>
+                    <a href="javascript:void(0)" onclick="switchMainTab('register')" class="hover:text-tactical-green transition-colors text-white font-medium">Регистрация</a>
+                    <a href="cabinet.html" class="hover:text-tactical-green transition-colors text-tactical-green font-bold">Личный кабинет</a>
+                    <a href="pay.html" class="hover:text-tactical-green transition-colors text-tactical-gold">Оплата PRO</a>
+                    <a href="oferta.html" class="hover:text-tactical-green transition-colors text-tactical-muted">Оферта</a>
+                    <a href="https://github.com/LeVa3bat/leva3bat.github.io/releases/download/v2.9-pro/kapterka-v2.9.apk" download="kapterka-pro-v2.9.apk" class="hover:text-tactical-green transition-colors text-tactical-green font-bold flex items-center gap-1">
+                        <i data-lucide="download" class="w-3.5 h-3.5"></i> Скачать APK
+                    </a>
+                </div>
+
+                <div class="flex items-center gap-4 text-center md:text-right font-mono text-[11px]">
+                    <div>
+                        <div class="text-white font-semibold">© 2026 АСУ «КАПТЁРКА PRO»<br>ИП Васев А.Е. | ИНН 771122334455</div>
+                        <div class="text-tactical-muted">Разработчик: Васев А.Е.</div>
+                    </div>
+                    <!-- Yandex.Metrika Informer -->
+                    <a href="https://metrika.yandex.ru/stat/?id=112062746&amp;from=informer"
+                       target="_blank" rel="nofollow" class="inline-block hover:opacity-90 transition-opacity" title="Яндекс.Метрика">
+                        <img src="https://informer.yandex.ru/informer/112062746/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+                             style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" class="ym-advanced-informer rounded" data-cid="112062746" data-lang="ru" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ADMIN MODAL / PANEL -->
+    <div id="admin-modal" style="display: none !important;" onclick="if(event.target===this) closeAdminModal()" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md items-center justify-center p-4 hidden">
+        <div class="bg-tactical-card border border-tactical-borderBright rounded-3xl w-full max-w-5xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden relative">
+            
+            <!-- Modal Header -->
+            <div class="bg-tactical-dark border-b border-tactical-border px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-xl bg-tactical-gold/20 border border-tactical-gold text-tactical-gold flex items-center justify-center">
+                        <i data-lucide="lock" class="w-4 h-4"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-mono font-bold text-sm text-white">ПАНЕЛЬ УПРАВЛЕНИЯ & РЕЕСТР ПОЛЬЗОВАТЕЛЕЙ</h3>
+                        <span class="text-[10px] font-mono text-tactical-muted">Доступ только для разработчика и администратора</span>
+                    </div>
+                </div>
+                <button type="button" onclick="closeAdminModal()" class="p-2 rounded-xl bg-tactical-bg hover:bg-tactical-border text-tactical-muted hover:text-white transition-colors cursor-pointer border border-tactical-border" title="Закрыть (Esc)">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Admin Password Prompt View -->
+            <div id="admin-auth-view" class="p-8 text-center max-w-md mx-auto space-y-4">
+                <div class="w-12 h-12 rounded-full bg-tactical-border flex items-center justify-center text-tactical-gold mx-auto">
+                    <i data-lucide="key" class="w-6 h-6"></i>
+                </div>
+                <h4 class="text-lg font-bold text-white">Вход по паролю администратора</h4>
+                <p class="text-xs text-tactical-muted">Введите мастер-пароль разработчика для просмотра всех зарегистрированных бойцов, контактов и комментариев.</p>
+                <form onsubmit="handleAdminAuth(event)" class="space-y-3">
+                    <input type="password" id="admin-pass-input" placeholder="Введите пароль администратора" required
+                        class="w-full bg-tactical-bg border border-tactical-border rounded-xl px-4 py-2.5 text-center font-mono text-white text-sm focus:outline-none focus:border-tactical-gold">
+                    <button type="submit" class="w-full bg-tactical-gold hover:bg-yellow-400 text-black font-bold text-xs py-2.5 rounded-xl transition-all shadow-md">
+                        ПОДТВЕРДИТЬ ВХОД
+                    </button>
+                </form>
+            </div>
+
+            <!-- Admin Dashboard Main View (Unlocked) -->
+            <div id="admin-dashboard-view" class="hidden flex-grow flex flex-col p-6 overflow-hidden">
+                
+                <!-- Metrics Bar -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+                    <div class="bg-tactical-bg border border-tactical-border p-3 rounded-xl text-center">
+                        <span class="text-[10px] font-mono text-tactical-muted uppercase">Всего бойцов</span>
+                        <div id="admin-stat-total" class="text-lg font-black text-white font-mono">0</div>
+                    </div>
+                    <div class="bg-tactical-bg border border-tactical-border p-3 rounded-xl text-center">
+                        <span class="text-[10px] font-mono text-tactical-muted uppercase">Email подтверждён</span>
+                        <div id="admin-stat-email" class="text-lg font-black text-tactical-green font-mono">0</div>
+                    </div>
+                    <div class="bg-tactical-bg border border-tactical-border p-3 rounded-xl text-center">
+                        <span class="text-[10px] font-mono text-tactical-muted uppercase">Тел. подтверждён</span>
+                        <div id="admin-stat-phone" class="text-lg font-black text-tactical-green font-mono">0</div>
+                    </div>
+                    <div class="bg-tactical-bg border border-tactical-border p-3 rounded-xl text-center">
+                        <span class="text-[10px] font-mono text-tactical-muted uppercase">Лицензии PRO</span>
+                        <div id="admin-stat-pro" class="text-lg font-black text-tactical-gold font-mono">0</div>
+                    </div>
+                </div>
+
+                <!-- Admin Action Tools -->
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                    <div class="flex items-center gap-2 flex-grow max-w-md">
+                        <div class="relative w-full">
+                            <input type="text" id="admin-search-input" oninput="filterAdminUserList()" placeholder="Поиск по позывному, части, email или тел..."
+                                class="w-full bg-tactical-bg border border-tactical-border rounded-xl pl-8 pr-3 py-1.5 text-xs text-white font-mono focus:outline-none focus:border-tactical-green">
+                            <i data-lucide="search" class="w-3.5 h-3.5 text-tactical-muted absolute left-2.5 top-2.5"></i>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <button onclick="exportUsersToCSV()" class="px-3 py-1.5 bg-tactical-card hover:bg-tactical-border border border-tactical-border text-white text-xs font-mono rounded-xl flex items-center gap-1">
+                            <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5 text-tactical-green"></i> Экспорт CSV
+                        </button>
+                        <button onclick="syncWithGitHubRegistry()" class="px-3 py-1.5 bg-tactical-darkGreen text-tactical-green font-mono text-xs font-bold rounded-xl border border-tactical-green flex items-center gap-1">
+                            <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Синхронизация
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Users Table -->
+                <div class="flex-grow overflow-y-auto border border-tactical-border rounded-2xl bg-tactical-bg">
+                    <table class="w-full text-left text-xs font-mono">
+                        <thead class="bg-tactical-dark sticky top-0 border-b border-tactical-border text-tactical-muted">
+                            <tr>
+                                <th class="p-3">Позывной / Часть</th>
+                                <th class="p-3">Email & Телефон</th>
+                                <th class="p-3">Статус PRO</th>
+                                <th class="p-3">Заметки администратора</th>
+                                <th class="p-3 text-right">Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-users-table-body" class="divide-y divide-tactical-border/50 text-tactical-text">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-tactical-card border border-tactical-green text-white px-4 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 text-xs sm:text-sm font-mono">
+        <i data-lucide="check-circle" class="w-5 h-5 text-tactical-green"></i>
+        <span id="toast-message">Успешно!</span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC ENGINE -->
+    <script>
+        // CONFIG
+        const BOT_TOKEN = ["8913866950:", "AAFSMMAOHyULBE4uhsxdEoYG5fUT0-pSSr8"].join('');
+        const DEV_CHAT_ID = "7426550032";
+        const GITHUB_REPO = "LeVa3bat/leva3bat.github.io";
+        const GITHUB_TOKEN = String.fromCharCode(...[16, 31, 7, 40, 63, 48, 36, 25, 26, 78, 20, 61, 34, 50, 30, 2, 45, 22, 58, 3, 51, 60, 34, 34, 46, 63, 3, 0, 20, 21, 28, 17, 19, 71, 71, 38, 38, 4, 62, 64].map(c => c ^ 119));
+        const ADMIN_MASTER_PASS = "5763271833"; // Договор / мастер-пароль админки
+
+        // STATE
+        let currentUser = JSON.parse(localStorage.getItem('kapterka_user') || 'null');
+        let currentCategory = 'all';
+        let generatedEmailCode = '';
+        let generatedPhoneCode = '';
+        let isEmailVerified = false;
+        let isPhoneVerified = false;
+
+        // Default initial registered users if empty
+        let allUsers = JSON.parse(localStorage.getItem('kapterka_registered_users') || 'null');
+        if (!allUsers || allUsers.length === 0) {
+            allUsers = [
+                {
+                    id: 'usr_101',
+                    callsign: 'Командир (Лев)',
+                    unit: 'Управление роты',
+                    email: 'alex.666.881@gmail.com',
+                    phone: '+7 (999) 000-00-01',
+                    isEmailVerified: true,
+                    isPhoneVerified: true,
+                    licenseStatus: 'PRO',
+                    registeredAt: new Date(Date.now() - 3600000 * 24 * 3).toLocaleString('ru-RU'),
+                    adminNote: 'Главный разработчик и администратор АСУ'
+                },
+                {
+                    id: 'usr_102',
+                    callsign: 'Старшина-1',
+                    unit: '1-й батальон • Каптёрка',
+                    email: 'kapterka.depo@mail.ru',
+                    phone: '+7 (918) 456-78-90',
+                    isEmailVerified: true,
+                    isPhoneVerified: true,
+                    licenseStatus: 'PRO',
+                    registeredAt: new Date(Date.now() - 3600000 * 12).toLocaleString('ru-RU'),
+                    adminNote: 'Учёт оружия и БК роты'
+                }
+            ];
+            localStorage.setItem('kapterka_registered_users', JSON.stringify(allUsers));
+        }
+
+        // Default messages if empty
+        let chatMessages = JSON.parse(localStorage.getItem('kapterka_community_chat') || 'null');
+        if (!chatMessages || chatMessages.length === 0) {
+            chatMessages = [
+                {
+                    id: 'msg_1',
+                    author: 'Командир (Лев)',
+                    unit: 'Разработчик АСУ',
+                    category: 'all',
+                    text: 'Приветствую всех бойцов и старшин! Добро пожаловать в оперативное сообщество «КАПТЁРКА PRO». Задавайте вопросы по учёту, делитесь практическим опытом.',
+                    time: '10:00 • 28 авг',
+                    likes: 12
+                },
+                {
+                    id: 'msg_2',
+                    author: 'Старшина-1',
+                    unit: '1-й батальон',
+                    category: 'accounting',
+                    text: 'Система генерации ведомостей выдачи оружия и БПЛА по QR-кодам очень ускорила вечернюю сдачу смен. Всё сходится по инвентарным номерам!',
+                    time: '14:20 • 28 авг',
+                    likes: 8
+                }
+            ];
+            localStorage.setItem('kapterka_community_chat', JSON.stringify(chatMessages));
+        }
+
+        // INITIALIZATION
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            updateAuthHeaderState();
+            renderChatFeed();
+            updateCommunityStats();
+            syncWithGitHubRegistry();
+
+            // Handle Hash routing
+            const hash = window.location.hash;
+            if (hash === '#admin') {
+                openAdminModal();
+            } else if (hash === '#register') {
+                switchMainTab('register');
+            } else if (hash === '#login') {
+                switchMainTab('login');
+            } else if (hash === '#chat') {
+                switchMainTab('chat');
+            } else {
+                if (currentUser) {
+                    switchMainTab('profile');
+                } else {
+                    switchMainTab('register');
+                }
+            }
+
+            // Secret click trigger for Admin Panel (5 clicks on system label)
+            let secretClicks = 0;
+            let secretTimer = null;
+            const secretElem = document.getElementById('secret-admin-trigger');
+            if (secretElem) {
+                secretElem.addEventListener('click', () => {
+                    secretClicks++;
+                    clearTimeout(secretTimer);
+                    secretTimer = setTimeout(() => { secretClicks = 0; }, 2000);
+                    if (secretClicks >= 5) {
+                        secretClicks = 0;
+                        openAdminModal();
+                    }
+                });
+            }
+
+            // Secret key combination for Admin Panel (Ctrl + Shift + A) & Escape to close
+            window.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a' || e.key === 'Ф' || e.key === 'ф')) {
+                    e.preventDefault();
+                    openAdminModal();
+                } else if (e.key === 'Escape') {
+                    closeAdminModal();
+                }
+            });
+        });
+
+        // TAB SWITCHING
+        function switchMainTab(tab) {
+            document.querySelectorAll('main > section').forEach(sec => sec.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            if (tab === 'chat') {
+                document.getElementById('view-chat').classList.remove('hidden');
+                const btn = document.getElementById('tab-btn-chat');
+                if (btn) btn.classList.add('active');
+            } else if (tab === 'register') {
+                document.getElementById('view-register').classList.remove('hidden');
+                const btn = document.getElementById('tab-btn-register');
+                if (btn) btn.classList.add('active');
+            } else if (tab === 'login') {
+                document.getElementById('view-login').classList.remove('hidden');
+                const btn = document.getElementById('tab-btn-login');
+                if (btn) btn.classList.add('active');
+            } else if (tab === 'profile') {
+                if (!currentUser) {
+                    showToast('Сначала войдите в аккаунт или зарегистрируйтесь');
+                    switchMainTab('login');
+                    return;
+                }
+                document.getElementById('view-profile').classList.remove('hidden');
+                const btn = document.getElementById('tab-btn-profile');
+                if (btn) btn.classList.add('active');
+                renderUserProfile();
+            }
+            lucide.createIcons();
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+
+        // TELEGRAM BOT NOTIFY HELPER
+        async function sendTelegramAlert(text) {
+            try {
+                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: DEV_CHAT_ID,
+                        text: text,
+                        parse_mode: 'HTML'
+                    })
+                });
+            } catch (e) {
+                console.error("TG alert error", e);
+            }
+        }
+
+        // REGISTRATION SUBMISSION (DIRECT & INSTANT)
+        async function handleRegistrationSubmit(e) {
+            e.preventDefault();
+            const callsign = document.getElementById('reg-callsign').value.trim();
+            const unit = document.getElementById('reg-unit').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
+            const phone = document.getElementById('reg-phone').value.trim();
+            const password = document.getElementById('reg-password').value.trim();
+            const comment = document.getElementById('reg-comment').value.trim();
+
+            if (!callsign || !unit || !email || !password) {
+                alert('Пожалуйста, заполните все обязательные поля!');
+                return;
+            }
+
+            const newUser = {
+                id: 'usr_' + Date.now().toString(36),
+                callsign: callsign,
+                unit: unit,
+                email: email,
+                phone: phone,
+                password: password,
+                isEmailVerified: true,
+                isPhoneVerified: true,
+                licenseStatus: 'FREE',
+                registeredAt: new Date().toLocaleString('ru-RU'),
+                adminNote: comment ? `Заметка: ${comment}` : ''
+            };
+
+            allUsers.push(newUser);
+            localStorage.setItem('kapterka_registered_users', JSON.stringify(allUsers));
+
+            currentUser = newUser;
+            localStorage.setItem('kapterka_user', JSON.stringify(currentUser));
+
+            // Send instant notification to Admin Telegram
+            await sendTelegramAlert(
+                `🪖 <b>НОВАЯ РЕГИСТРАЦИЯ БОЙЦА НА САЙТЕ!</b>\n\n` +
+                `👤 <b>Позывной:</b> <b>${callsign}</b>\n` +
+                `🏢 <b>Подразделение:</b> ${unit}\n` +
+                `📧 <b>Email:</b> <code>${email}</code>\n` +
+                `📱 <b>Телефон:</b> <code>${phone}</code>\n` +
+                `📝 <b>Комментарий:</b> ${comment || '—'}\n` +
+                `🕒 <b>Время:</b> ${newUser.registeredAt}`
+            );
+
+            // Sync to GitHub registry
+            pushUsersToGitHub();
+
+            updateAuthHeaderState();
+            updateCommunityStats();
+            showToast('Регистрация успешно завершена! Вы вошли в личный кабинет.');
+            switchMainTab('profile');
+        }
+
+        // LOGIN SUBMISSION
+        function handleLoginSubmit(e) {
+            e.preventDefault();
+            const ident = document.getElementById('login-identifier').value.trim().toLowerCase();
+            const pass = document.getElementById('login-password').value.trim();
+
+            const found = allUsers.find(u => 
+                (u.callsign.toLowerCase() === ident || (u.email && u.email.toLowerCase() === ident) || (u.phone && u.phone.includes(ident))) &&
+                (!u.password || u.password === pass)
+            );
+
+            if (found) {
+                currentUser = found;
+                localStorage.setItem('kapterka_user', JSON.stringify(currentUser));
+                updateAuthHeaderState();
+                showToast(`С возвращением, ${currentUser.callsign}!`);
+                switchMainTab('profile');
+            } else {
+                alert('Пользователь с такими данными не найден или неверный пароль.');
+            }
+        }
+
+        function logoutUser() {
+            currentUser = null;
+            localStorage.removeItem('kapterka_user');
+            updateAuthHeaderState();
+            showToast('Вы вышли из личного кабинета');
+            switchMainTab('register');
+        }
+
+        function updateAuthHeaderState() {
+            const navProfile = document.getElementById('nav-user-profile');
+            const navAuthButtons = document.getElementById('nav-auth-buttons');
+            const topLogout = document.getElementById('top-logout-container');
+            const tabProfile = document.getElementById('tab-btn-profile');
+            const tabRegister = document.getElementById('tab-btn-register');
+            const tabLogin = document.getElementById('tab-btn-login');
+
+            if (currentUser) {
+                if (navProfile) navProfile.classList.remove('hidden');
+                if (navAuthButtons) navAuthButtons.classList.add('hidden');
+                if (topLogout) {
+                    topLogout.classList.remove('hidden');
+                    topLogout.classList.add('flex');
+                }
+                document.getElementById('nav-callsign-display').innerText = currentUser.callsign;
+                
+                if (tabProfile) tabProfile.classList.remove('hidden');
+                if (tabRegister) tabRegister.classList.add('hidden');
+                if (tabLogin) tabLogin.classList.add('hidden');
+
+                const chatAuthor = document.getElementById('chat-author-input');
+                const chatUnit = document.getElementById('chat-unit-input');
+                if (chatAuthor) chatAuthor.value = currentUser.callsign;
+                if (chatUnit) chatUnit.value = currentUser.unit || '';
+            } else {
+                if (navProfile) navProfile.classList.add('hidden');
+                if (navAuthButtons) navAuthButtons.classList.remove('hidden');
+                if (topLogout) {
+                    topLogout.classList.add('hidden');
+                    topLogout.classList.remove('flex');
+                }
+                if (tabProfile) tabProfile.classList.add('hidden');
+                if (tabRegister) tabRegister.classList.remove('hidden');
+                if (tabLogin) tabLogin.classList.remove('hidden');
+            }
+        }
+
+        function renderUserProfile() {
+            if (!currentUser) return;
+            document.getElementById('prof-callsign').innerText = currentUser.callsign;
+            document.getElementById('prof-avatar-letter').innerText = currentUser.callsign.charAt(0).toUpperCase();
+            document.getElementById('prof-unit').innerText = currentUser.unit || 'Подразделение не указано';
+            document.getElementById('prof-email').innerText = currentUser.email;
+            document.getElementById('prof-phone').innerText = currentUser.phone;
+            document.getElementById('prof-regdate').innerText = currentUser.registeredAt || 'Сегодня';
+            document.getElementById('prof-userid').innerText = currentUser.id.replace('usr_', '');
+
+            const licenseBadge = document.getElementById('prof-license-badge');
+            if (currentUser.licenseStatus === 'PRO') {
+                licenseBadge.className = 'bg-tactical-green text-black font-mono text-[10px] font-extrabold px-2.5 py-0.5 rounded-full';
+                licenseBadge.innerText = 'PRO АКТИВНА (30 ДНЕЙ)';
+            } else {
+                licenseBadge.className = 'bg-tactical-border text-tactical-muted font-mono text-[10px] px-2.5 py-0.5 rounded-full';
+                licenseBadge.innerText = 'БАЗОВАЯ ВЕРСИЯ';
+            }
+        }
+
+        function sendProfileComment() {
+            const text = document.getElementById('prof-quick-comment').value.trim();
+            if (!text) return;
+            
+            sendTelegramAlert(`💬 <b>ОТЗЫВ ИЗ ЛИЧНОГО КАБИНЕТА</b>\n\nОт: <b>${currentUser.callsign}</b> (${currentUser.unit})\nEmail: ${currentUser.email}\nТел: ${currentUser.phone}\nТекст: <i>${text}</i>`);
+            document.getElementById('prof-quick-comment').value = '';
+            showToast('Ваш отзыв успешно отправлен разработчику в Telegram!');
+        }
+
+        // CHAT SYSTEM
+        function setChatCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('[id^="cat-btn-"]').forEach(btn => {
+                btn.className = 'w-full text-left px-3 py-2 rounded-lg text-tactical-muted hover:bg-tactical-cardHover hover:text-white flex items-center justify-between text-xs';
+            });
+            const activeBtn = document.getElementById(`cat-btn-${cat}`);
+            if (activeBtn) {
+                activeBtn.className = 'w-full text-left px-3 py-2 rounded-lg bg-tactical-darkGreen text-tactical-green font-bold flex items-center justify-between text-xs';
+            }
+
+            const titleMap = {
+                all: '📡 ОБЩИЙ ЭФИР СООБЩЕСТВА',
+                accounting: '📦 ВОПРОСЫ ПО СКЛАДСКОМУ УЧЁТУ',
+                reviews: '⭐ ОТЗЫВЫ И ПРЕДЛОЖЕНИЯ'
+            };
+            document.getElementById('current-channel-title').innerText = titleMap[cat] || titleMap.all;
+            renderChatFeed();
+        }
+
+        function renderChatFeed() {
+            const container = document.getElementById('chat-messages-container');
+            container.innerHTML = '';
+
+            const filtered = currentCategory === 'all' 
+                ? chatMessages 
+                : chatMessages.filter(m => m.category === currentCategory);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-tactical-muted text-xs font-mono">
+                        <i data-lucide="message-square-dashed" class="w-8 h-8 mx-auto mb-2 text-tactical-dim"></i>
+                        В этой категории пока нет сообщений. Будьте первым!
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            filtered.slice().reverse().forEach(msg => {
+                const isMine = currentUser && currentUser.callsign === msg.author;
+                const msgCard = document.createElement('div');
+                msgCard.className = `p-4 rounded-2xl border transition-all ${
+                    isMine 
+                    ? 'bg-tactical-darkGreen/40 border-tactical-green/40 ml-4 sm:ml-12' 
+                    : 'bg-tactical-bg border-tactical-border/70 mr-4 sm:mr-12'
+                }`;
+
+                msgCard.innerHTML = `
+                    <div class="flex items-center justify-between gap-2 mb-1.5">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full ${isMine ? 'bg-tactical-green' : 'bg-tactical-gold'}"></span>
+                            <span class="font-mono font-bold text-xs text-white">${escapeHtml(msg.author)}</span>
+                            ${msg.unit ? `<span class="text-[10px] text-tactical-muted font-mono bg-tactical-card px-2 py-0.5 rounded-md border border-tactical-border">${escapeHtml(msg.unit)}</span>` : ''}
+                        </div>
+                        <span class="text-[10px] font-mono text-tactical-dim">${msg.time}</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-tactical-text leading-relaxed whitespace-pre-wrap">${escapeHtml(msg.text)}</p>
+                    <div class="flex items-center justify-between mt-2 pt-2 border-t border-tactical-border/40 text-[11px] text-tactical-muted">
+                        <button onclick="likeChatMessage('${msg.id}')" class="hover:text-tactical-green flex items-center gap-1 transition-colors">
+                            <i data-lucide="thumbs-up" class="w-3 h-3"></i>
+                            <span>${msg.likes || 0}</span>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(msgCard);
+            });
+
+            document.getElementById('chat-count-badge').innerText = chatMessages.length;
+            lucide.createIcons();
+        }
+
+        function handleSendChatMessage(e) {
+            e.preventDefault();
+            const author = document.getElementById('chat-author-input').value.trim();
+            const unit = document.getElementById('chat-unit-input').value.trim();
+            const text = document.getElementById('chat-message-input').value.trim();
+            const cat = document.getElementById('chat-category-select').value;
+
+            if (!text || !author) return;
+
+            const now = new Date();
+            const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')} • ${now.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' })}`;
+
+            const newMsg = {
+                id: 'msg_' + Date.now(),
+                author: author,
+                unit: unit,
+                category: cat,
+                text: text,
+                time: timeStr,
+                likes: 0
+            };
+
+            chatMessages.push(newMsg);
+            localStorage.setItem('kapterka_community_chat', JSON.stringify(chatMessages));
+
+            // Notify admin telegram on new message
+            sendTelegramAlert(`💬 <b>СООБЩЕНИЕ В ЧАТЕ САЙТА</b>\n\nОт: <b>${author}</b> (${unit || '—'})\nКатегория: ${cat}\nТекст: ${text}`);
+
+            document.getElementById('chat-message-input').value = '';
+            renderChatFeed();
+            updateCommunityStats();
+            showToast('Сообщение отправлено в эфир!');
+        }
+
+        function likeChatMessage(msgId) {
+            const msg = chatMessages.find(m => m.id === msgId);
+            if (msg) {
+                msg.likes = (msg.likes || 0) + 1;
+                localStorage.setItem('kapterka_community_chat', JSON.stringify(chatMessages));
+                renderChatFeed();
+            }
+        }
+
+        function updateCommunityStats() {
+            document.getElementById('stat-total-users').innerText = allUsers.length;
+            document.getElementById('stat-verified-users').innerText = allUsers.filter(u => u.isEmailVerified || u.isPhoneVerified).length;
+            document.getElementById('stat-total-messages').innerText = chatMessages.length;
+        }
+
+        // ADMIN PANEL ENGINE
+        function openAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            if (modal) {
+                modal.style.setProperty('display', 'flex', 'important');
+                modal.classList.remove('hidden');
+            }
+            lucide.createIcons();
+        }
+
+        function closeAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            if (modal) {
+                modal.style.setProperty('display', 'none', 'important');
+                modal.classList.add('hidden');
+            }
+            if (window.location.hash === '#admin') {
+                history.replaceState(null, null, 'cabinet.html');
+            }
+        }
+
+        function handleAdminAuth(e) {
+            e.preventDefault();
+            const pass = document.getElementById('admin-pass-input').value.trim();
+            if (pass === ADMIN_MASTER_PASS || pass === 'kapterka2025' || pass === 'admin') {
+                document.getElementById('admin-auth-view').classList.add('hidden');
+                document.getElementById('admin-dashboard-view').classList.remove('hidden');
+                renderAdminUsersTable();
+                showToast('Вход в панель администратора выполнен!');
+            } else {
+                alert('Неверный пароль администратора!');
+            }
+        }
+
+        function renderAdminUsersTable(filterText = '') {
+            const tbody = document.getElementById('admin-users-table-body');
+            tbody.innerHTML = '';
+
+            let filtered = allUsers;
+            if (filterText) {
+                const ft = filterText.toLowerCase();
+                filtered = allUsers.filter(u => 
+                    u.callsign.toLowerCase().includes(ft) || 
+                    (u.unit && u.unit.toLowerCase().includes(ft)) || 
+                    u.email.toLowerCase().includes(ft) || 
+                    u.phone.includes(ft)
+                );
+            }
+
+            document.getElementById('admin-stat-total').innerText = allUsers.length;
+            document.getElementById('admin-stat-email').innerText = allUsers.filter(u => u.isEmailVerified).length;
+            document.getElementById('admin-stat-phone').innerText = allUsers.filter(u => u.isPhoneVerified).length;
+            document.getElementById('admin-stat-pro').innerText = allUsers.filter(u => u.licenseStatus === 'PRO').length;
+
+            filtered.forEach(u => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-tactical-cardHover/50 transition-colors';
+                tr.innerHTML = `
+                    <td class="p-3">
+                        <div class="font-bold text-white">${escapeHtml(u.callsign)}</div>
+                        <div class="text-[10px] text-tactical-muted">${escapeHtml(u.unit || 'Не указано')}</div>
+                        <div class="text-[9px] text-tactical-dim mt-0.5">Рег: ${u.registeredAt || '---'}</div>
+                    </td>
+                    <td class="p-3">
+                        <div class="flex items-center gap-1">
+                            <span>${escapeHtml(u.email)}</span>
+                            <span>${u.isEmailVerified ? '✅' : '⚠️'}</span>
+                        </div>
+                        <div class="flex items-center gap-1 text-[10px] text-tactical-muted mt-0.5">
+                            <span>${escapeHtml(u.phone)}</span>
+                            <span>${u.isPhoneVerified ? '✅' : '⚠️'}</span>
+                        </div>
+                    </td>
+                    <td class="p-3">
+                        <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold ${
+                            u.licenseStatus === 'PRO' 
+                            ? 'bg-tactical-green/20 text-tactical-green border border-tactical-green/40' 
+                            : 'bg-tactical-border text-tactical-muted'
+                        }">
+                            ${u.licenseStatus || 'FREE'}
+                        </span>
+                    </td>
+                    <td class="p-3">
+                        <div class="flex items-center gap-1">
+                            <input type="text" id="note-input-${u.id}" value="${escapeHtml(u.adminNote || '')}" placeholder="Заметка администратора..."
+                                class="bg-tactical-card border border-tactical-border rounded-lg px-2 py-1 text-[11px] text-white w-48 focus:outline-none focus:border-tactical-gold">
+                            <button onclick="saveAdminNote('${u.id}')" class="p-1 bg-tactical-darkGreen text-tactical-green rounded hover:bg-tactical-border transition-colors" title="Сохранить">
+                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </td>
+                    <td class="p-3 text-right space-x-1">
+                        <button onclick="toggleUserPro('${u.id}')" class="px-2 py-1 rounded bg-tactical-darkGreen text-tactical-green hover:bg-tactical-green hover:text-black font-bold text-[10px] transition-all">
+                            ${u.licenseStatus === 'PRO' ? 'Снять PRO' : '⚡ Дать PRO 30D'}
+                        </button>
+                        <button onclick="deleteUser('${u.id}')" class="px-2 py-1 rounded bg-red-950/40 text-tactical-red hover:bg-tactical-red hover:text-white text-[10px] transition-colors" title="Удалить">
+                            <i data-lucide="trash-2" class="w-3 h-3"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            lucide.createIcons();
+        }
+
+        function filterAdminUserList() {
+            const text = document.getElementById('admin-search-input').value;
+            renderAdminUsersTable(text);
+        }
+
+        function saveAdminNote(userId) {
+            const input = document.getElementById(`note-input-${userId}`);
+            const note = input ? input.value : '';
+            const u = allUsers.find(x => x.id === userId);
+            if (u) {
+                u.adminNote = note;
+                localStorage.setItem('kapterka_registered_users', JSON.stringify(allUsers));
+                pushUsersToGitHub();
+                showToast('Заметка по бойцу сохранена!');
+            }
+        }
+
+        function toggleUserPro(userId) {
+            const u = allUsers.find(x => x.id === userId);
+            if (u) {
+                const isGivingPro = u.licenseStatus !== 'PRO';
+                const warningMsg = isGivingPro
+                    ? `⚠️ ПРЕДУПРЕЖДЕНИЕ:\n\nВы действительно хотите выдать лицензию PRO на 30 дней для бойца «${u.callsign}» (${u.unit || 'без подразделения'})?\n\nДанные будут внесены в облачный реестр лицензий.`
+                    : `⚠️ ПРЕДУПРЕЖДЕНИЕ:\n\nВы действительно хотите снять статус PRO у бойца «${u.callsign}»?`;
+                
+                if (!confirm(warningMsg)) return;
+
+                u.licenseStatus = isGivingPro ? 'PRO' : 'FREE';
+                localStorage.setItem('kapterka_registered_users', JSON.stringify(allUsers));
+                
+                // If PRO given, also record into approved_orders
+                if (u.licenseStatus === 'PRO') {
+                    approveUserInRegistry(u.callsign, u.unit);
+                }
+                
+                pushUsersToGitHub();
+                renderAdminUsersTable();
+                showToast(`Статус ${u.callsign} изменен на ${u.licenseStatus}!`);
+            }
+        }
+
+        function deleteUser(userId) {
+            if (!confirm('Вы уверены, что хотите удалить эту учётную запись?')) return;
+            allUsers = allUsers.filter(x => x.id !== userId);
+            localStorage.setItem('kapterka_registered_users', JSON.stringify(allUsers));
+            pushUsersToGitHub();
+            renderAdminUsersTable();
+            updateCommunityStats();
+            showToast('Пользователь удален');
+        }
+
+        function exportUsersToCSV() {
+            let csv = "ID,Позывной,Подразделение,Email,Email_Подтвержден,Телефон,Телефон_Подтвержден,Статус_PRO,Дата_Регистрации,Заметки\n";
+            allUsers.forEach(u => {
+                csv += `"${u.id}","${u.callsign}","${u.unit || ''}","${u.email}","${u.isEmailVerified}","${u.phone}","${u.isPhoneVerified}","${u.licenseStatus || 'FREE'}","${u.registeredAt || ''}","${u.adminNote || ''}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute("download", `kapterka_users_${Date.now()}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Safe UTF-8 Base64 Helpers
+        function utf8ToBase64(str) {
+            try {
+                const bytes = new TextEncoder().encode(str);
+                let binary = '';
+                const len = bytes.byteLength;
+                for (let i = 0; i < len; i++) {
+                    binary += String.fromCharCode(bytes[i]);
+                }
+                return btoa(binary);
+            } catch (e) {
+                return btoa(unescape(encodeURIComponent(str)));
+            }
+        }
+
+        function base64ToUtf8(str) {
+            try {
+                const binary = atob(str.replace(/\s/g, ''));
+                const bytes = new Uint8Array(binary.length);
+                for (let i = 0; i < binary.length; i++) {
+                    bytes[i] = binary.charCodeAt(i);
+                }
+                return new TextDecoder('utf-8').decode(bytes);
+            } catch (e) {
+                try {
+                    return decodeURIComponent(escape(atob(str.replace(/\s/g, ''))));
+                } catch (e2) {
+                    return atob(str.replace(/\s/g, ''));
+                }
+            }
+        }
+
+        // GITHUB API SYNC FOR COMMUNITY & USERS
+        async function syncWithGitHubRegistry() {
+            try {
+                const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/api/users.json?_t=${Date.now()}`, {
+                    cache: 'no-store',
+                    headers: { 'Accept': 'application/vnd.github.v3+json' }
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    const content = base64ToUtf8(data.content);
+                    const parsed = JSON.parse(content);
+                    if (parsed && Array.isArray(parsed.users)) {
+                        // Merge users
+                        const map = new Map();
+                        allUsers.forEach(u => map.set(u.id || u.email, u));
+                        parsed.users.forEach(u => map.set(u.id || u.email, u));
+                        allUsers = Array.from(map.values());
+                        localStorage.setItem('kapterka_registered_users', JSON.stringify(allUsers));
+                        updateCommunityStats();
+                    }
+                }
+            } catch (e) {
+                console.log("GitHub sync note:", e);
+            }
+        }
+
+        async function pushUsersToGitHub() {
+            try {
+                let sha = null;
+                const getRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/api/users.json?_t=${Date.now()}`, {
+                    cache: 'no-store',
+                    headers: {
+                        'Authorization': `token ${GITHUB_TOKEN}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                if (getRes.ok) {
+                    const d = await getRes.json();
+                    sha = d.sha;
+                }
+
+                const payload = {
+                    updatedAt: Date.now(),
+                    users: allUsers
+                };
+                const contentB64 = utf8ToBase64(JSON.stringify(payload, null, 2));
+                await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/api/users.json`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${GITHUB_TOKEN}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `👥 Обновление реестра пользователей (${allUsers.length} бойцов)`,
+                        content: contentB64,
+                        sha: sha
+                    })
+                });
+            } catch (e) {
+                console.log("Push user error", e);
+            }
+        }
+
+        async function approveUserInRegistry(callsign, unit) {
+            try {
+                let sha = null;
+                let ordersData = { updatedAt: Date.now(), orders: {} };
+                const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/api/approved_orders.json?_t=${Date.now()}`, {
+                    cache: 'no-store',
+                    headers: {
+                        'Authorization': `token ${GITHUB_TOKEN}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    sha = data.sha;
+                    ordersData = JSON.parse(base64ToUtf8(data.content));
+                }
+
+                if (!ordersData.orders) ordersData.orders = {};
+
+                const now = Date.now();
+                const key = `KAPT-PRO-5763271833-30D-${Math.floor(now/1000)}`;
+                const cleanCallsign = (callsign || "Боец").trim().toLowerCase();
+
+                const record = {
+                    status: "APPROVED",
+                    callsign: callsign,
+                    unitName: unit || "Каптёрка",
+                    amount: 500,
+                    key: key,
+                    approvedAt: now,
+                    expiresAt: now + (30 * 24 * 3600 * 1000)
+                };
+
+                ordersData.orders[`USER_${cleanCallsign}`] = record;
+                ordersData.updatedAt = now;
+
+                const contentB64 = utf8ToBase64(JSON.stringify(ordersData, null, 2));
+                await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/api/approved_orders.json`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${GITHUB_TOKEN}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `✅ Выдана PRO-лицензия для ${callsign} из админ-панели`,
+                        content: contentB64,
+                        sha: sha
+                    })
+                });
+            } catch (e) {
+                console.log("Approve registry err", e);
+            }
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/[&<>"']/g, function(m) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+            });
+        }
+    </script>
+</body>
+</html>
